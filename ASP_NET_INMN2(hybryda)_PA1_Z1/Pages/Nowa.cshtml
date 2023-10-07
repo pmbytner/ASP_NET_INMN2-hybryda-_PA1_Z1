@@ -1,0 +1,89 @@
+﻿@page
+@model ASP_NET_INMN2_hybryda__PA1_Z1.Pages.NowaModel
+@{
+    /*
+        Ćwiczenie:
+        - zmienić wybór filtra z listy linków na element select formularza,
+            używający funkcji js generującej zapytanie do serwera na wybór wartości
+        - zmienić sposób filtrowania - zamiast wyciągać/spłaszczać tablicę miasta,
+            robimy podwójną pętlę po słowniku gdy mamy pusty filtr,
+            albo bezpośrednio po tablicy pod odpowiednim kluczem w słowniku, jeśli zapytano o istniejące województwo
+        - wypisywać w każdym wierszu z jakiego województwa jest miasto
+        - dorzucić grupowanie danych państwami (wówczas w miejsce województwa robimy najwyższą jednostkę administracyjną, typu stan, land, itp)
+        - zrobić filtrowanie państwami, gdzie po wyborze państwa filtruje się również lista jednostek administracyjnych do filtra drugiego poziomu
+        - w każdym wierzu wypisać z jakiego państwa jest miasto
+    */
+}
+
+@{
+    ViewData["Title"] = "Nowa strona";
+    string[] etykiety = { "Miasto", "Populacja", "Powierzchnia" };
+    Dictionary<
+        string,
+        (string Nazwa, uint Populacja, decimal Powierzchnia)[]
+        > miastaWojewództwami = new()
+        {
+            ["Kujawsko-Pomorskie"] = new (string Nazwa, uint Populacja, decimal Powierzchnia)[]
+            {
+                ("Grudziądz", 100000, 30.7m),
+            },
+            ["Pomorskie"] = new (string Nazwa, uint Populacja, decimal Powierzchnia)[]
+            {
+                ("Gdańsk", 500000, 127.3m),
+                ("Gdynia", 250000, 172.3m),
+                ("Sopot", 30000, 20.13m),
+            },
+            ["Warmińsko-Mazurskie"] = new (string Nazwa, uint Populacja, decimal Powierzchnia)[]
+            {
+                ("Elbląg", 120000, 44.2m),
+                ("Olsztyn", 150000, 51.24m)
+            }
+        };
+    (string Nazwa, uint Populacja, decimal Powierzchnia)[] miasta;
+    if(
+        Request.Query.ContainsKey("województwo")
+        &&
+        miastaWojewództwami.ContainsKey(Request.Query["województwo"]!)
+        )
+        miasta = miastaWojewództwami[Request.Query["województwo"]!];
+    else
+    {
+        List<(string Nazwa, uint Populacja, decimal Powierzchnia)> lista = new();
+        foreach ((string Nazwa, uint Populacja, decimal Powierzchnia)[] miastaWWojewództwie in miastaWojewództwami.Values)
+            lista.AddRange(miastaWWojewództwie);
+        miasta = lista.ToArray();
+    }
+}
+
+<h1>Nasza nowa strona</h1>
+<h2>Zapytanie get</h2>
+<p>Województwo: @Request.Query["województwo"]</p>
+<ul>
+    <li><a href="?">Wszystko</a></li>
+    @foreach(string województwo in miastaWojewództwami.Keys)
+    {
+        <li><a href="?województwo=@województwo">@województwo</a></li>
+    }
+</ul>
+
+<h2>Tabela z danymi o miastach</h2>
+<table>
+    <thead>
+        <tr>
+            @foreach(string etykieta in etykiety)
+            {
+                <th>@etykieta</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ((string Nazwa, uint Populacja, decimal Powierzchnia) miasto in miasta)
+        {
+            <tr>
+                <td>@miasto.Nazwa</td>
+                <td>@miasto.Populacja</td>
+                <td>@miasto.Powierzchnia</td>
+            </tr>
+        }
+    </tbody>
+</table>
