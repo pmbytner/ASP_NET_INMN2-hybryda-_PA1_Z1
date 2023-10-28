@@ -1,0 +1,60 @@
+﻿@page
+@model ASP_NET_INMN2_hybryda__PA1_Z1.Pages.Miasta.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasta[0].Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasta[0].DataZałożenia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasta[0].Powierzchnia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasta[0].Populacja)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasta[0].Województwo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var miasto in Model.Miasta) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => miasto.Nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => miasto.DataZałożenia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => miasto.Powierzchnia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => miasto.Populacja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => miasto.Województwo)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@miasto.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@miasto.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@miasto.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

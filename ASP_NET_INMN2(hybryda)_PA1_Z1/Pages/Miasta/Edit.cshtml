@@ -1,0 +1,55 @@
+﻿@page
+@model ASP_NET_INMN2_hybryda__PA1_Z1.Pages.Miasta.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Miasto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Miasto.Id" />
+            <div class="form-group">
+                <label asp-for="Miasto.Nazwa" class="control-label"></label>
+                <input asp-for="Miasto.Nazwa" class="form-control" />
+                <span asp-validation-for="Miasto.Nazwa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Miasto.DataZałożenia" class="control-label"></label>
+                <input asp-for="Miasto.DataZałożenia" class="form-control" />
+                <span asp-validation-for="Miasto.DataZałożenia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Miasto.Powierzchnia" class="control-label"></label>
+                <input asp-for="Miasto.Powierzchnia" class="form-control" />
+                <span asp-validation-for="Miasto.Powierzchnia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Miasto.Populacja" class="control-label"></label>
+                <input asp-for="Miasto.Populacja" class="form-control" />
+                <span asp-validation-for="Miasto.Populacja" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Miasto.Województwo" class="control-label"></label>
+                <input asp-for="Miasto.Województwo" class="form-control" />
+                <span asp-validation-for="Miasto.Województwo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
