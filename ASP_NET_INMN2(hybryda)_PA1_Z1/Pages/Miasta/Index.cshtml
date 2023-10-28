@@ -17,9 +17,6 @@
                 @Html.DisplayNameFor(model => model.Miasta[0].Nazwa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Miasta[0].DataZałożenia)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Miasta[0].Powierzchnia)
             </th>
             <th>
@@ -27,6 +24,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Miasta[0].Województwo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasta[0].Państwo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasta[0].DataZałożenia)
             </th>
             <th></th>
         </tr>
@@ -38,9 +41,6 @@
                 @Html.DisplayFor(modelItem => miasto.Nazwa)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => miasto.DataZałożenia)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => miasto.Powierzchnia)
             </td>
             <td>
@@ -49,6 +49,12 @@
             <td>
                 @Html.DisplayFor(modelItem => miasto.Województwo)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => miasto.Państwo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => miasto.DataZałożenia)
+                </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@miasto.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@miasto.Id">Details</a> |

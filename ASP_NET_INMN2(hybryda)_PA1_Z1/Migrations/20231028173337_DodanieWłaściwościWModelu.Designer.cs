@@ -4,6 +4,7 @@ using ASP_NET_INMN2_hybryda__PA1_Z1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASP_NET_INMN2_hybryda__PA1_Z1.Migrations
 {
     [DbContext(typeof(PA1_Z1_Context))]
-    partial class PA1_Z1_ContextModelSnapshot : ModelSnapshot
+    [Migration("20231028173337_DodanieWłaściwościWModelu")]
+    partial class DodanieWłaściwościWModelu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

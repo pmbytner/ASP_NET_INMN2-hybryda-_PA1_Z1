@@ -6,9 +6,11 @@ public class Miasto
 {
     public int Id { get; set; }
     public string? Nazwa { get; set; }
+    [Display(Name = "Data założenia")]
     [DataType(DataType.Date)]
     public DateTime? DataZałożenia { get; set; }
     public decimal? Powierzchnia { get; set; }
     public ulong? Populacja { get; set; }
     public string? Województwo { get; set; }
+    public string? Państwo { get; set; }
 }
